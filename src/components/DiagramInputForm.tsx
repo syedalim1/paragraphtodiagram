@@ -43,7 +43,9 @@ export default function DiagramInputForm({
       <h2 className="text-xl font-semibold mb-4">Create Diagram</h2>
 
       <div className="mb-4">
-        <Label htmlFor="diagram-type" className="block text-gray-700 mb-2">Diagram Type</Label>
+        <Label htmlFor="diagram-type" className="block text-gray-700 mb-2">
+          Diagram Type
+        </Label>
         <Select value={diagramType} onValueChange={setDiagramType}>
           <SelectTrigger id="diagram-type" className="w-full">
             <SelectValue placeholder="Select a diagram type" />
@@ -84,17 +86,11 @@ export default function DiagramInputForm({
       </div>
 
       <div className="flex gap-2">
-        <Button
-          onClick={generateDiagram}
-          disabled={isLoading}
-        >
+        <Button onClick={generateDiagram} disabled={isLoading}>
           {isLoading ? "Generating..." : "Generate Diagram"}
         </Button>
 
-        <Button
-          variant="outline"
-          onClick={() => setShowHistory(!showHistory)}
-        >
+        <Button variant="outline" onClick={() => setShowHistory(!showHistory)}>
           {showHistory ? "Hide History" : "Show History"}
         </Button>
       </div>

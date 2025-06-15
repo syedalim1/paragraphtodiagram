@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AuthControls from "@/components/AuthControls"; // Import the new component
+import { Toast, ToastProvider, ToastViewport } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,6 +47,10 @@ export default function RootLayout({
             </div>
           </header>
           <main className="pt-4 pb-8">{children}</main>
+          <ToastProvider>
+            <Toast />
+            <ToastViewport />
+          </ToastProvider>
         </body>
       </html>
     </ClerkProvider>

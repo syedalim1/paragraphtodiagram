@@ -252,7 +252,7 @@ export default function DiagramOutputDisplay({
   return (
     <div className="bg-white rounded-lg shadow p-6">
       <h2 className="text-xl font-semibold mb-4">Diagram Preview</h2>
-
+      {/* 
       {error && (
         <div
           className={`mb-4 p-3 rounded ${
@@ -263,7 +263,7 @@ export default function DiagramOutputDisplay({
         >
           {error}
         </div>
-      )}
+      )} */}
 
       {analysis && (
         <div className="mb-4">
@@ -293,11 +293,7 @@ export default function DiagramOutputDisplay({
 
       {editedDiagram && (
         <div className="mt-4 flex justify-end">
-          <Button
-            onClick={downloadDiagram}
-          >
-            Download as PNG
-          </Button>
+          <Button onClick={downloadDiagram}>Download as PNG</Button>
         </div>
       )}
     </div>

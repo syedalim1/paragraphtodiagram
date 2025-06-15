@@ -1,13 +1,20 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import { UserButton, SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs';
 // import Link from 'next/link'; // Link is not used in this component
 
 export default function AuthControls() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <>
       <SignedIn>
-        <UserButton afterSignOutUrl="/" />
+        {isClient && <UserButton afterSignOutUrl="/" />}
       </SignedIn>
       <SignedOut>
         <SignInButton mode="modal">
