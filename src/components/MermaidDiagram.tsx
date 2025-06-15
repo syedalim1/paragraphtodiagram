@@ -109,10 +109,8 @@ const MermaidDiagram: React.FC<MermaidDiagramProps> = ({ chart, id = 'mermaid-di
         
         if (elementRef.current) {
           elementRef.current.innerHTML = `
-            <div style="padding: 20px; text-align: center; color: #ef4444; border: 2px dashed #ef4444; border-radius: 8px; background: #fef2f2;">
-              <p><strong>Diagram Rendering Error:</strong></p>
-              <p>${err instanceof Error ? err.message : 'Unknown error occurred'}</p>
-              <p style="font-size: 12px; margin-top: 10px;">Please check your diagram syntax and try again.</p>
+            <div style="padding: 8px; text-align: center; color: #ef4444; font-size: 14px;">
+              <p><strong>Error:</strong> ${err instanceof Error ? err.message : 'Unknown error occurred'}</p>
             </div>
           `;
         }
