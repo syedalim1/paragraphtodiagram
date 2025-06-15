@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from '@clerk/nextjs' // UserButton, SignedIn, etc. moved to AuthControls
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import AuthControls from "@/components/AuthControls"; // Import the new component
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,12 +26,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <header className="bg-white shadow sticky top-0 z-50">
+            <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+              <Link href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+                DiagramGen
+              </Link>
+              <div className="flex items-center gap-6">
+                <nav className="flex gap-4">
+                  <Link href="/dashboard" className="text-gray-600 hover:text-blue-600 transition-colors">Generator</Link>
+                  <Link href="/history" className="text-gray-600 hover:text-blue-600 transition-colors">History</Link>
+                </nav>
+                <AuthControls />
+              </div>
+            </div>
+          </header>
+          <main className="pt-4 pb-8">{children}</main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
