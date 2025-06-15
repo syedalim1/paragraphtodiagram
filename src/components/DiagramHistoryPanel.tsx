@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "@/components/ui/button";
 
 interface AnalysisResult {
   summary: string;
@@ -29,14 +30,15 @@ export default function DiagramHistoryPanel({
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {history.map((item, index) => (
-            <div
+            <Button
               key={index}
-              className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer"
+              variant="outline"
+              className="flex flex-col items-start p-4 h-auto"
               onClick={() => loadFromHistory(item)}
             >
-              <h3 className="font-medium truncate">{item.summary}</h3>
-              <p className="text-sm text-gray-600">{item.diagramType}</p>
-            </div>
+              <h3 className="font-medium truncate w-full text-left">{item.summary}</h3>
+              <p className="text-sm text-gray-600 w-full text-left">{item.diagramType}</p>
+            </Button>
           ))}
         </div>
       )}

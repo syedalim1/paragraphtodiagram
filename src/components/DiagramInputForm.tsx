@@ -1,4 +1,15 @@
 import React from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 
 interface DiagramInputFormProps {
   inputText: string;
@@ -32,65 +43,60 @@ export default function DiagramInputForm({
       <h2 className="text-xl font-semibold mb-4">Create Diagram</h2>
 
       <div className="mb-4">
-        <label className="block text-gray-700 mb-2">Diagram Type</label>
-        <select
-          value={diagramType}
-          onChange={(e) => setDiagramType(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        >
-          {diagramTypes.map((type) => (
-            <option key={type.id} value={type.id}>
-              {type.name}
-            </option>
-          ))}
-        </select>
+        <Label htmlFor="diagram-type" className="block text-gray-700 mb-2">Diagram Type</Label>
+        <Select value={diagramType} onValueChange={setDiagramType}>
+          <SelectTrigger id="diagram-type" className="w-full">
+            <SelectValue placeholder="Select a diagram type" />
+          </SelectTrigger>
+          <SelectContent>
+            {diagramTypes.map((type) => (
+              <SelectItem key={type.id} value={type.id}>
+                {type.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 mb-2">
+        <Label htmlFor="description" className="block text-gray-700 mb-2">
           Describe what you want to visualize
-        </label>
-        <textarea
+        </Label>
+        <Textarea
+          id="description"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           rows={5}
-          className="w-full p-2 border border-gray-300 rounded"
           placeholder="Example: Show the process of user registration with steps: visit site, fill form, submit, receive confirmation email"
-        ></textarea>
+        />
       </div>
 
       <div className="flex items-center mb-4">
-        <input
-          type="checkbox"
+        <Checkbox
           id="enhancePrompt"
           checked={enhancePrompt}
-          onChange={(e) => setEnhancePrompt(e.target.checked)}
+          onCheckedChange={(checked: boolean) => setEnhancePrompt(checked)}
           className="mr-2"
         />
-        <label htmlFor="enhancePrompt" className="text-gray-700">
+        <Label htmlFor="enhancePrompt" className="text-gray-700">
           Enhance my prompt with AI
-        </label>
+        </Label>
       </div>
 
       <div className="flex gap-2">
-        <button
+        <Button
           onClick={generateDiagram}
           disabled={isLoading}
-          className={`px-4 py-2 rounded font-medium ${
-            isLoading
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700 text-white"
-          }`}
         >
           {isLoading ? "Generating..." : "Generate Diagram"}
-        </button>
+        </Button>
 
-        <button
+        <Button
+          variant="outline"
           onClick={() => setShowHistory(!showHistory)}
-          className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded font-medium"
         >
           {showHistory ? "Hide History" : "Show History"}
-        </button>
+        </Button>
       </div>
     </div>
   );

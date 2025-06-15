@@ -1,5 +1,6 @@
 import React, { RefObject } from "react";
 import MermaidDiagram from "./MermaidDiagram";
+import { Button } from "@/components/ui/button";
 
 interface AnalysisResult {
   summary: string;
@@ -292,12 +293,11 @@ export default function DiagramOutputDisplay({
 
       {editedDiagram && (
         <div className="mt-4 flex justify-end">
-          <button
+          <Button
             onClick={downloadDiagram}
-            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded font-medium"
           >
             Download as PNG
-          </button>
+          </Button>
         </div>
       )}
     </div>
