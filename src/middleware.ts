@@ -1,12 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-// Define routes that should be protected
-const isProtectedRoute = createRouteMatcher([
-  '/dashboard(.*)', // Protects the dashboard and any sub-routes
-  '/history(.*)',   // Protects the history page and any sub-routes
-  '/api/(.*)',      // Protects all API routes (except explicitly public ones if any)
-]);
-
 // Define public routes (these will not be protected)
 const isPublicRoute = createRouteMatcher([
   '/', // Allow access to the root page (e.g., for landing or redirect)
