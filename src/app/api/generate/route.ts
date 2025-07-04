@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // --- Configuration ---
-const GEMINI_MODEL = "gemini-2.5-flash-preview-05-20";
+const GEMINI_MODEL = "gemini-2.5-flash";
 // No explicit endpoint needed with the SDK, it handles it internally
 const VALID_DIAGRAM_TYPES = [
   "er_diagram", // Entity Relationship Diagram
